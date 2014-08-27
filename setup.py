@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
 import pytube
+
+from setuptools import setup
 
 packages = [
     'pytube'
@@ -18,6 +19,7 @@ setup(
     packages=packages,
     download_url="https://github.com/NFicano/pytube/tarball/0.1.16",
     license="MIT License",
+    install_requires= ['argparse'],
     scripts = ['scripts/pytubectl'],
     classifiers=[
         "Development Status :: 4 - Beta",

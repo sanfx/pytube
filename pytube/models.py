@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-from os.path import normpath, isfile
+from os.path import normpath, isfile, expanduser, sep
 from os import remove
 from time import clock
 try:
@@ -48,7 +48,7 @@ class Video(object):
 
         """
 
-        path = (normpath(path) + '/' if path else '')
+        path = ('{0}{1}'.format(path, sep) if path else expanduser('~/Desktop/'))
         fullpath = '{0}{1}.{2}'.format(path, self.filename, self.extension)
 
         # Check for conflicting filenames
@@ -66,7 +66,7 @@ class Video(object):
         try:
             with open(fullpath, 'wb') as dst_file:
                 # Print downloading message
-                print("\nDownloading: '{0}.{1}' (Bytes: {2}) \nto path: {3}\n\n".format(
+                print("\nDownloading: '{0}.{1}' (Size: {2}) \nto path: {3}\n\n".format(
                       self.filename, self.extension, sizeof(file_size), path))
 
                 while True:
